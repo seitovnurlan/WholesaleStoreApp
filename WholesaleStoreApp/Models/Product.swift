@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Product {
+    var name: String
+    var price: Double
+    var manufacturer: Manufacturer
+    var brand: String
+}
