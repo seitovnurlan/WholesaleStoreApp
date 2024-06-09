@@ -12,4 +12,5 @@ struct Product {
     var price: Double
     var manufacturer: Manufacturer
     var brand: String
+    var image: String
 }

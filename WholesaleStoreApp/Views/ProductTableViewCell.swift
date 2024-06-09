@@ -48,7 +48,7 @@ class ProductTableViewCell: UITableViewCell {
         return title
     } ()
     
-    private lazy var contactImageView: UIImageView = {
+    private lazy var brandImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
@@ -67,38 +67,34 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     func configure(with ads: Product) {
-       
-//        contactImageView.image = UIImage(named: ads.imageCont)
         nameLabel.text = ads.name
         priceLabel.text = String(ads.price)
         manufacturerLabel.text = ads.manufacturer.name
         brandLabel.text = ads.brand
-        
+        brandImageView.image = UIImage(named: ads.image)
     }
     
     private func setupConstraints() {
-        
         self.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(1)
+            make.top.equalToSuperview().offset(5)
             make.leading.equalToSuperview().offset(6)
             make.height.equalTo(20)
-            make.width.equalTo(150)
+            make.width.equalTo(120)
         }
         self.addSubview(priceLabel)
         priceLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(1)
             make.leading.equalTo(nameLabel.snp.trailing).offset(12)
-//            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(20)
-            make.width.equalTo(40)
+            make.width.equalTo(60)
         }
         self.addSubview(manufacturerLabel)
         manufacturerLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(6)
             make.height.equalTo(20)
-            make.width.equalTo(150)
+            make.width.equalTo(120)
         }
         
         self.addSubview(brandLabel)
@@ -109,11 +105,12 @@ class ProductTableViewCell: UITableViewCell {
             make.height.equalTo(20)
         }
         
-//        self.addSubview(contactImageView)
-//        contactImageView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(6)
-//            make.leading.equalToSuperview().offset(16)
-//            make.height.width.equalTo(48)
-//        }
+        self.addSubview(brandImageView)
+        brandImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.width.equalTo(50)
+            make.width.equalTo(50)
+        }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2818ADD52C16621E00F5B251 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2818ADD42C16621E00F5B251 /* EditProductViewController.swift */; };
 		28BDFE4D2BE81E3C001DB69C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDFE4C2BE81E3C001DB69C /* AppDelegate.swift */; };
 		28BDFE4F2BE81E3C001DB69C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDFE4E2BE81E3C001DB69C /* SceneDelegate.swift */; };
 		28BDFE562BE81E40001DB69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28BDFE552BE81E40001DB69C /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		0F290A0AEB53AC94CA714B48 /* Pods_WholesaleStoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WholesaleStoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2818ADD42C16621E00F5B251 /* EditProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		28BDFE492BE81E3C001DB69C /* WholesaleStoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WholesaleStoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28BDFE4C2BE81E3C001DB69C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28BDFE4E2BE81E3C001DB69C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				28BDFE682BE821C6001DB69C /* ProductTableViewCell.swift */,
 				28BDFE6A2BE821F4001DB69C /* ProductDetailsViewController.swift */,
 				28BDFE6C2BE8221C001DB69C /* AddProductViewController.swift */,
+				2818ADD42C16621E00F5B251 /* EditProductViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				28BDFE6F2BE82255001DB69C /* ProductListViewController.swift in Sources */,
 				28BDFE6D2BE8221C001DB69C /* AddProductViewController.swift in Sources */,
 				28BDFE672BE8217E001DB69C /* Manufacturer.swift in Sources */,
+				2818ADD52C16621E00F5B251 /* EditProductViewController.swift in Sources */,
 				28BDFE652BE82103001DB69C /* Product.swift in Sources */,
 				28BDFE4D2BE81E3C001DB69C /* AppDelegate.swift in Sources */,
 				28BDFE4F2BE81E3C001DB69C /* SceneDelegate.swift in Sources */,
