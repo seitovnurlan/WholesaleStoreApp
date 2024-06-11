@@ -12,7 +12,7 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
     
     private lazy var searchTextField: UITextField = {
         let textField = UITextField()
-        textField.setLeftPaddingPointsCustom(36)
+        textField.setLeftPaddingPointsCustom(30)
         textField.placeholder = "Search"
         textField.textColor = UIColor.gray
         textField.textAlignment = .left
@@ -30,6 +30,20 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
         return imageView
     }()
     
+    private lazy var sortButton: UIButton = {
+       let button = UIButton(type: .system)
+//        button.setTitle("Сортировать", for: .normal)
+        button.setImage(UIImage(systemName: "arrow.up.arrow.down.square.fill"), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        button.tintColor = UIColor.systemGray3
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = 15
+//        button.layer.borderWidth = 1
+//        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+       return button
+   } ()
+    
     private lazy var listTableView: UITableView = {
 //        let tableView = UITableView(frame: .zero, style: .horizontal)
 //        let tableView = UITableView(frame: .zero, style: .plain)
@@ -45,6 +59,10 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
     
     var selectedProductIndex: Int?
     
+    var filteredProducts: [Product] = []
+    
+    var isSortedAscending = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -55,12 +73,8 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
     
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
 
-               // Добавление кнопок в навигационную панель
-               navigationItem.rightBarButtonItems = [addButton, editButton]
+        navigationItem.rightBarButtonItems = [addButton, editButton]
         
-//        let backButton = UIBarButtonItem(title: "List of goods", style: .plain, target: nil, action: nil)
-//            backButton.tintColor = .black
-//            navigationItem.leftBarButtonItems = [backButton]
         listTableView.dataSource = self
         listTableView.delegate = self
         loadProducts()
@@ -71,11 +85,30 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
         doubleTapRecognizer.numberOfTapsRequired = 2
         listTableView.addGestureRecognizer(doubleTapRecognizer)
         
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        filterProducts()
+    }
+    
     func didEditProduct(_ product: Product, at index: Int) {
-        products[index] = product
+        filteredProducts[index] = product
         listTableView.reloadData()
     }
+    
+    func filterProducts() {
+        let manufacturerFilter = searchTextField.text?.lowercased() ?? ""
+        
+        filteredProducts = products.filter { product in
+            let matchesManufacturer = manufacturerFilter.isEmpty || product.manufacturer.name.lowercased().contains(manufacturerFilter)
+            return matchesManufacturer
+        }
+        
+        listTableView.reloadData()
+    }
+
 
     func loadProducts() {
         products.append(Product(name: "Спорт.костюм", price: 35.0, manufacturer: Manufacturer(name: "Nike"), brand: "Nike Sportswear", image: "nike"))
@@ -91,17 +124,17 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
         products.append(Product(name: "Шортик", price: 35.0, manufacturer: Manufacturer(name: "Puma"), brand: "Puma Golf", image: "puma"))
         products.append(Product(name: "Кепка", price: 35.0, manufacturer: Manufacturer(name: "Puma"), brand: "Puma Sportstyle", image: "puma"))
         
-        var _: Product = products[0]
+//        var _: Product = products[0]
+        filteredProducts = products
     }
     
     func didAddProduct(_ product: Product) {
-        products.append(product)
+        filteredProducts.append(product)
         listTableView.reloadData()
     }
     
        private func createCustomBackButton() -> UIBarButtonItem {
-          
-           var backButton = UIBarButtonItem(title: "List of goods", style: .plain, target: nil, action: nil)
+           let backButton = UIBarButtonItem(title: "List of goods", style: .plain, target: nil, action: nil)
            backButton.tintColor = .systemBlue
            return backButton
        }
@@ -122,7 +155,8 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
            }
            
            let editProductVC = EditProductViewController()
-           editProductVC.products = products
+//           editProductVC.products = products
+           editProductVC.products = filteredProducts
            editProductVC.selectedIndex = selectedIndex
            editProductVC.delegate = self
            navigationController?.pushViewController(editProductVC, animated: true)
@@ -134,31 +168,44 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
                 let selectedProduct = products[indexPath.row]
                 showProductDetails(for: selectedProduct)
             }
-        }
+    }
     
+    @objc func sortButtonTapped() {
+        filteredProducts.sort { $0.price < $1.price }
+//        products.sort { $0.price < $1.price }
+        listTableView.reloadData()
+    }
+
     func setupViews() {
         view.addSubview(searchTextField)
         view.addSubview(searchImageView)
+        view.addSubview(sortButton)
         view.addSubview(listTableView)
     }
     
     func setupConstraints() {
         searchTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(2)
-//            make.top.equalToSuperview().inset(95)
             make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
+//            make.width.equalTo(100)
             make.height.equalTo(36)
         }
         
         searchImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
-//            make.top.equalToSuperview().inset(103)
             make.leading.equalTo(24)
             make.height.width.equalTo(20)
         }
+        
+        sortButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(6)
+            make.leading.equalTo(searchTextField.snp.trailing).offset(5)
+            make.trailing.equalTo(-16)
+            make.width.equalTo(40)
+            make.height.equalTo(30)
+        }
+        
         listTableView.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.top.equalTo(searchTextField.snp.bottom).offset(10)
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
@@ -169,12 +216,13 @@ class ProductListViewController: UIViewController, ProductAddingDelegate, Produc
 
 extension ProductListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
+//        return products.count
+        return filteredProducts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseIdentifier, for: indexPath) as! ProductTableViewCell
-        if indexPath.row < products.count {
-                let product = products[indexPath.row]
+        if indexPath.row < filteredProducts.count {
+            let product = filteredProducts[indexPath.row]
                 cell.configure(with: product)
             }
             return cell
@@ -186,6 +234,7 @@ extension ProductListViewController: UITableViewDataSource, UITableViewDelegate 
         selectedProductIndex = indexPath.row
 //        let selectedProduct = products[indexPath.row]
 //        showProductDetails(for: selectedProduct)
+        
     }
     func showProductDetails(for product: Product) {
         let nextViewController = ProductDetailsViewController()

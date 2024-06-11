@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic2" translatesAutoresizingMaskIntoConstraints="NO" id="ZGO-T4-zGf">
-                                <rect key="frame" x="27" y="273" width="339" height="315"/>
+                                <rect key="frame" x="27" y="219" width="339" height="315"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Wholesale Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-sS-yxW">
-                                <rect key="frame" x="84" y="618" width="224" height="32"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <color key="textColor" red="0.17254901959999999" green="0.28235294119999998" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Wholesale Store" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-sS-yxW">
+                                <rect key="frame" x="84" y="542" width="224" height="32"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="26"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -30,13 +31,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZGO-T4-zGf" secondAttribute="trailing" constant="27" id="DiK-0k-7A7"/>
-                            <constraint firstItem="ZGO-T4-zGf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="214" id="IMF-A8-3Su"/>
-                            <constraint firstItem="0bw-sS-yxW" firstAttribute="top" secondItem="ZGO-T4-zGf" secondAttribute="bottom" constant="30" id="Q7m-9h-E7m"/>
+                            <constraint firstItem="ZGO-T4-zGf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="160" id="IMF-A8-3Su"/>
+                            <constraint firstItem="0bw-sS-yxW" firstAttribute="top" secondItem="ZGO-T4-zGf" secondAttribute="bottom" constant="8" id="Q7m-9h-E7m"/>
                             <constraint firstItem="0bw-sS-yxW" firstAttribute="centerX" secondItem="ZGO-T4-zGf" secondAttribute="centerX" id="VGg-Os-zGr"/>
                             <constraint firstItem="ZGO-T4-zGf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="Zmb-np-iYv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0bw-sS-yxW" secondAttribute="trailing" constant="85" id="aeV-uS-Oq4"/>
                             <constraint firstItem="0bw-sS-yxW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="84" id="qtm-l4-Qql"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0bw-sS-yxW" secondAttribute="bottom" constant="168" id="sYj-17-Nkd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0bw-sS-yxW" secondAttribute="bottom" constant="244" id="sYj-17-Nkd"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -47,5 +48,8 @@
     </scenes>
     <resources>
         <image name="pic2" width="600" height="400"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -62,7 +62,9 @@ class LoginViewController: UIViewController {
         
         var rememberMeConfig = UIButton.Configuration.plain()
 //        rememberMeConfig.title = "Запомнить меня"
-        rememberMeConfig.image = UIImage(systemName: "checkmark")
+//        rememberMeConfig.image = UIImage(systemName: "checkmark")
+        rememberMeConfig.image = UIImage(systemName: "chevron.down.square.fill")
+        rememberMeConfig.image?.withTintColor(UIColor.systemBlue)
         rememberMeConfig.imagePadding = 10
         
         let titleText = "Запомнить меня"
@@ -71,14 +73,14 @@ class LoginViewController: UIViewController {
                ])
         rememberMeConfig.attributedTitle = AttributedString(attributedTitle)
         button.setAttributedTitle(attributedTitle, for: .normal)
-        rememberMeConfig.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 8, weight: .medium)
+        rememberMeConfig.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 12, weight: .medium)
                
         button.configuration = rememberMeConfig
         
 //        let checkmarkImage = UIImage(systemName: "checkmark")
 //        button.setImage(checkmarkImage, for: .normal)
 //        button.imageView?.contentMode = .scaleAspectFit
-        button.tintColor = .black
+        button.tintColor = .systemBlue
 //        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(didTapRememberMeButton), for: .touchUpInside)
        return button
